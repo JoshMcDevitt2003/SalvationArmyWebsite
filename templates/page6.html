@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="https://vectorseek.com/wp-content/uploads/2021/02/The-Salvation-Army-Logo-Vector-2048x2048.jpg" className="nav-logo" alt="Salvation Army Logo" />
+            <ul>
+                <li><a href="/">Entry/Exit Trends</a></li>
+                <li><a href="/page2" class="active">LOS trends</a></li>
+                <li><a href="/page3">Age Trends</a></li>
+                <li><a href="/page4">Housing Trends</a></li>
+                <li><a href="/page5">Recidivism Trends</a></li>
+                <li><a href="/page6">Data Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Data Upload</h1>
+        <p id="description">Upload your data set on this Page! Make sure it is in .csv format and aligns with the Salvation Army's data set format.</p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file">Choose CSV file:</label>
+            <input id ="filebutton" type="file" id="file" name="file" accept=".csv" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        <p>{{ message }}</p>
+    </main>
+    <footer>
+        <p id='footerupload'><b>For Inquiries or Technical Support:</b></p>
+        <p id='footer'><b>Deveolper:</b> Josh McDevitt</p>
+        <p id='footer'><b>Email:</b> jmcdevitt2003@gmail.com</p>
+        <p id='footer'><b>Phone:</b> (949) 616-0246</p>
+    </footer>
+</body>
+</html>

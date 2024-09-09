@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="https://vectorseek.com/wp-content/uploads/2021/02/The-Salvation-Army-Logo-Vector-2048x2048.jpg" className="nav-logo" alt="Salvation Army Logo" />
+            <ul>
+                <li><a href="/">Entry/Exit Trends</a></li>
+                <li><a href="/page2" class="active">LOS trends</a></li>
+                <li><a href="/page3">Age Trends</a></li>
+                <li><a href="/page4">Housing Trends</a></li>
+                <li><a href="/page5">Recidivism Trends</a></li>
+                <li><a href="/page6">Data Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Entry/Exit Trends</h1>
+        <p id="description">This page allows users to input a minimum and maximum date and generates a detailed report displaying the entry and exit trends of clients whose data falls within the specified date range.</p>
+        <form action="/averageEntries" method="post">
+            <label for="min">Enter Start Date (mm/dd/yyyy): </label>
+            <input type="text" id="min" name="min" required>
+            <br>
+            <label for="max">Enter End Date (mm/dd/yyyy): </label>
+            <input type="text" id="max" name="max" required>
+            <br><br>
+            <button type="submit">Analyze Data</button>
+        </form>
+        <p id="report">{{ report.replace('\n', '<br>') | safe }}</p>
+        <div id='Histogram'></div>
+        <script>
+            var graphData = JSON.parse('{{ graphJSON | tojson | safe }}');
+            Plotly.newPlot('Histogram', graphData.data, graphData.layout);
+        </script>
+    </main>
+    <footer>
+        <p id='footer'><b>For Inquiries or Technical Support:</b></p>
+        <p id='footer'><b>Deveolper:</b> Josh McDevitt</p>
+        <p id='footer'><b>Email:</b> jmcdevitt2003@gmail.com</p>
+        <p id='footer'><b>Phone:</b> (949) 616-0246</p>
+    </footer>
+</body>
+</html>

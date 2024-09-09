@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="https://vectorseek.com/wp-content/uploads/2021/02/The-Salvation-Army-Logo-Vector-2048x2048.jpg" className="nav-logo" alt="Salvation Army Logo" />
+            <ul>
+                <li><a href="/">Entry/Exit Trends</a></li>
+                <li><a href="/page2" class="active">LOS trends</a></li>
+                <li><a href="/page3">Age Trends</a></li>
+                <li><a href="/page4">Housing Trends</a></li>
+                <li><a href="/page5">Recidivism Trends</a></li>
+                <li><a href="/page6">Data Upload</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Housing Trends</h1>
+        <p id="description">This page analyzes the entire dataset to generate a comprehensive report on housing trends.</p>
+        <form action ="/housing" method="post">
+            <button type="submit">Find Housing Trends</button>
+        </form>
+        <p id="report">{{ report.replace('\n', '<br>') | safe }}</p>
+        <div id='pi-chart'></div>
+        <script>
+            var graphData = JSON.parse('{{ graphJSON | tojson | safe }}');
+            Plotly.newPlot('pi-chart', graphData.data, graphData.layout);
+        </script>
+    </main>
+    <footer>
+        <p id='footer'><b>For Inquiries or Technical Support:</b></p>
+        <p id='footer'><b>Deveolper:</b> Josh McDevitt</p>
+        <p id='footer'><b>Email:</b> jmcdevitt2003@gmail.com</p>
+        <p id='footer'><b>Phone:</b> (949) 616-0246</p>
+    </footer>
+</body>
+</html>
